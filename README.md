@@ -66,7 +66,7 @@ Add this recipe to the top of your runlist to set a nodes `ipaddress` attribute 
 ```
 ---
 driver:
-  name: docker
+  name: vagrant
   network:
     - ["private_network", { type: "dhcp" }]
 
