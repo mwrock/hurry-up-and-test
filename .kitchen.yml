@@ -1,0 +1,26 @@
+---
+driver:
+  name: vagrant
+  network:
+    - ["private_network", { type: "dhcp" }]
+
+provisioner:
+  name: chef_zero
+
+platforms:
+- name: ubuntu-12.04
+  driver_config:
+    box: hashicorp/precise64
+- name: windows-2012R2
+  transport:
+    name: winrm
+  driver_config:
+    gui: true
+    box: mwrock/Windows2012R2Full
+
+suites:
+  - name: default
+    run_list:
+      - recipe[hurry-up-and-test::set_non_nat_vbox_ip]
+      - recipe[hurry-up-and-test-tests::export_node_test]
+      - recipe[hurry-up-and-test::export_node]
