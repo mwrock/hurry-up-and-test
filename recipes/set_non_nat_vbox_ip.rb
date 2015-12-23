@@ -1,9 +1,11 @@
 # linux
 if node["virtualization"] && node["virtualization"]["system"] == "vbox"
-  interface = node["network"]["interfaces"].select {|key| puts key;key == "eth1"}
+  interfaces = node["network"]["interfaces"]
+  interface = (interfaces.keys - ["lo", node["network"]["default_interface"]]).first
+
   unless interface.empty?
-    interface["eth1"]["addresses"].each do |ip, params|
-      if params['family'] == ('inet')
+    interfaces[interface]["addresses"].each do |ip, params|
+      if params["family"] == ("inet")
         node.automatic["ipaddress"] = ip
       end
     end
