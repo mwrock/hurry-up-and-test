@@ -7,4 +7,5 @@ version          '0.1.2'
 source_url       'https://github.com/mwrock/hurry-up-and-test'
 
 supports         'ubuntu'
+supports         'centos'
 supports         'windows'
